@@ -10,4 +10,4 @@ This repo will contain everything maldev related i learn , in different programm
 
 # ❗️ DISCLAIMER ❗️
 
-**Of course, everything you see here is for pure educational purposes and should be used at your own risk, i am not responsible if you act dumb and use it in a bad way.
+**Of course, everything you see here is for pure educational purposes and should be used at your own risk, i am not responsible if you act dumb and use it in a bad way.**
