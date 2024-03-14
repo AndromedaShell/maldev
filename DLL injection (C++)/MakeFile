@@ -1,0 +1,19 @@
+CXX := g++
+CXXFLAGS := -O2 -m64 -Wall -Wpedantic
+DLL_DIR := dll
+
+main: main.cpp $(DLL_DIR)/nigga.dll
+	@echo "[*] Compiling the DLL injector..."
+	$(CXX) $(CXXFLAGS) -o dll_injector.exe main.cpp injection.cpp
+	@echo "[+] Finished! Enjoy!"
+
+$(DLL_DIR)/nigga.dll: $(DLL_DIR)/dll.cpp
+	@echo "[*] Compiling the DLL..."
+	$(CXX) $(CXXFLAGS) -shared -o $(DLL_DIR)/nigga.dll $(DLL_DIR)/dll.cpp
+
+.PHONY: clean
+clean:
+	@echo "[*] Deleting dll_injector.exe..."
+	rm -f dll_injector.exe
+	@echo "[*] Deleting DLL files..."
+	rm -f $(DLL_DIR)/nigga.dll
