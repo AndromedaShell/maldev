@@ -13,11 +13,11 @@ public:
 
     bool Inject(DWORD pid) {
         if (nullptr == DLLPath || 0 == PathSize) {
-            std::cerr << "Target DLL has not been set." << std::endl;
+            std::cerr << "target DLL has not been set." << std::endl;
             return false;
         }
 
-        std::cout << "Attempting to inject " << DLLPath << " to the remote process." << std::endl;
+        std::cout << "attempting to inject " << DLLPath << " to the remote process." << std::endl;
 
         HANDLE hProcess = OpenProcess(PROCESS_VM_OPERATION | PROCESS_VM_WRITE, FALSE, pid);
         if (nullptr == hProcess) {
@@ -25,7 +25,7 @@ public:
             return false;
         }
 
-        std::cout << "[" << hProcess << "] Got a handle on the process." << std::endl;
+        std::cout << "[" << hProcess << "] Obtained a handle on the process !!" << std::endl;
 
         HMODULE hKernel32 = GetModuleHandleW(L"Kernel32.dll");
         if (nullptr == hKernel32) {
@@ -34,7 +34,7 @@ public:
             return false;
         }
 
-        std::cout << "[" << hKernel32 << "] Got a handle to Kernel32." << std::endl;
+        std::cout << "[" << hKernel32 << "] handle to Kernel32 obtained!!" << std::endl;
 
         PVOID p_LoadLibrary = GetProcAddress(hKernel32, "LoadLibraryW");
         if (nullptr == p_LoadLibrary) {
@@ -43,7 +43,7 @@ public:
             return false;
         }
 
-        std::cout << "[" << p_LoadLibrary << "] Obtained the address of LoadLibraryW." << std::endl;
+        std::cout << "[" << p_LoadLibrary << "] Address of LoadLibraryW has been obtained :3" << std::endl;
 
         PVOID rBuffer = VirtualAllocEx(hProcess, nullptr, PathSize, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
         if (nullptr == rBuffer) {
@@ -92,7 +92,7 @@ private:
 
     void SillyFormat(const LPCSTR FunctionName, const DWORD Error) const {
         if (nullptr == FunctionName || 0 == Error) {
-            std::cerr << "You did something wrong. Please try again." << std::endl;
+            std::cerr << "you fucked up" << std::endl;
         }
         std::cerr << "[" << FunctionName << "] failed, error: 0x" << std::hex << std::setw(8) << std::setfill('0') << Error << std::endl;
     }
